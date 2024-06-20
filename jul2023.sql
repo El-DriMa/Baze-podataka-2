@@ -1,21 +1,21 @@
 --14.07.2023.
---BAZE PODATAKA II ñ ISPIT
+--BAZE PODATAKA II ‚Äì ISPIT
 --***Prilikom izrade zadataka, OBAVEZNO iznad svakog zadatka napisati redni broj zadatka i tekst. Zadaci 
---koji ne budu oznaËeni na prethodno definisan naËin neÊe biti evaluirani.
---1. Kroz SQL kod kreirati bazu podataka sa imenom vaöeg broja indeksa.
+--koji ne budu ozna√®eni na prethodno definisan na√®in ne√¶e biti evaluirani.
+--1. Kroz SQL kod kreirati bazu podataka sa imenom va≈°eg broja indeksa.
 
 GO
 CREATE DATABASE ispitjul2023
 
 USE ispitjul2023
 
---2. U kreiranoj bazi podataka kreirati tabele sa sljedeÊom strukturom:
+--2. U kreiranoj bazi podataka kreirati tabele sa sljede√¶om strukturom:
 --a) Prodavaci
---ï ProdavacID, cjelobrojna vrijednost i primarni kljuË, autoinkrement
---ï Ime, 50 UNICODE (obavezan unos)
---ï Prezime, 50 UNICODE (obavezan unos)
---ï OpisPosla, 50 UNICODE karaktera (obavezan unos)
---ï EmailAdresa, 50 UNICODE karaktera 
+--‚Ä¢ ProdavacID, cjelobrojna vrijednost i primarni klju√®, autoinkrement
+--‚Ä¢ Ime, 50 UNICODE (obavezan unos)
+--‚Ä¢ Prezime, 50 UNICODE (obavezan unos)
+--‚Ä¢ OpisPosla, 50 UNICODE karaktera (obavezan unos)
+--‚Ä¢ EmailAdresa, 50 UNICODE karaktera 
 
 CREATE TABLE Prodavaci
 (
@@ -28,11 +28,11 @@ EmailAdresa NVARCHAR(50)
 
 
 --b) Proizvodi
---ï ProizvodID, cjelobrojna vrijednost i primarni kljuË, autoinkrement
---ï Naziv, 50 UNICODE karaktera (obavezan unos)
---ï SifraProizvoda, 25 UNICODE karaktera (obavezan unos)
---ï Boja, 15 UNICODE karaktera 
---ï NazivPodkategorije, 50 UNICODE (obavezan unos)
+--‚Ä¢ ProizvodID, cjelobrojna vrijednost i primarni klju√®, autoinkrement
+--‚Ä¢ Naziv, 50 UNICODE karaktera (obavezan unos)
+--‚Ä¢ SifraProizvoda, 25 UNICODE karaktera (obavezan unos)
+--‚Ä¢ Boja, 15 UNICODE karaktera 
+--‚Ä¢ NazivPodkategorije, 50 UNICODE (obavezan unos)
 
 CREATE TABLE Proizvodi
 (
@@ -44,15 +44,15 @@ NazivPodkategorije NVARCHAR(50) NOT NULL,
 )
 
 --c) ZaglavljeNarudzbe 
---ï NarudzbaID, cjelobrojna vrijednost i primarni kljuË, autoinkrement
---ï DatumNarudzbe, polje za unos datuma i vremena (obavezan unos)
---ï DatumIsporuke, polje za unos datuma i vremena
---ï KreditnaKarticaID, cjelobrojna vrijednost
---ï ImeKupca, 50 UNICODE (obavezan unos)
---ï PrezimeKupca, 50 UNICODE (obavezan unos)
---ï NazivGradaIsporuke, 30 UNICODE (obavezan unos)
---ï ProdavacID, cjelobrojna vrijednost, strani kljuË
---ï NacinIsporuke, 50 UNICODE (obavezan unos)
+--‚Ä¢ NarudzbaID, cjelobrojna vrijednost i primarni klju√®, autoinkrement
+--‚Ä¢ DatumNarudzbe, polje za unos datuma i vremena (obavezan unos)
+--‚Ä¢ DatumIsporuke, polje za unos datuma i vremena
+--‚Ä¢ KreditnaKarticaID, cjelobrojna vrijednost
+--‚Ä¢ ImeKupca, 50 UNICODE (obavezan unos)
+--‚Ä¢ PrezimeKupca, 50 UNICODE (obavezan unos)
+--‚Ä¢ NazivGradaIsporuke, 30 UNICODE (obavezan unos)
+--‚Ä¢ ProdavacID, cjelobrojna vrijednost, strani klju√®
+--‚Ä¢ NacinIsporuke, 50 UNICODE (obavezan unos)
 
 CREATE TABLE ZaglavljeNarudzbe
 (
@@ -69,14 +69,14 @@ NacinIsporuke NVARCHAR(50) NOT NULL
 
 
 --d) DetaljiNarudzbe
---ï NarudzbaID, cjelobrojna vrijednost, obavezan unos i strani kljuË
---ï ProizvodID, cjelobrojna vrijednost, obavezan unos i strani kljuË
---ï Cijena, novËani tip (obavezan unos),
---ï Kolicina, skraÊeni cjelobrojni tip (obavezan unos),
---ï Popust, novËani tip (obavezan unos)
---ï OpisSpecijalnePonude, 255 UNICODE (obavezan unos)
---**Jedan proizvod se moûe viöe puta naruËiti, dok jedna narudûba moûe sadrûavati viöe proizvoda. U okviru jedne 
---narudûbe jedan proizvod se moûe naruËiti viöe puta.
+--‚Ä¢ NarudzbaID, cjelobrojna vrijednost, obavezan unos i strani klju√®
+--‚Ä¢ ProizvodID, cjelobrojna vrijednost, obavezan unos i strani klju√®
+--‚Ä¢ Cijena, nov√®ani tip (obavezan unos),
+--‚Ä¢ Kolicina, skra√¶eni cjelobrojni tip (obavezan unos),
+--‚Ä¢ Popust, nov√®ani tip (obavezan unos)
+--‚Ä¢ OpisSpecijalnePonude, 255 UNICODE (obavezan unos)
+--**Jedan proizvod se mo≈æe vi≈°e puta naru√®iti, dok jedna narud≈æba mo≈æe sadr≈æavati vi≈°e proizvoda. U okviru jedne 
+--narud≈æbe jedan proizvod se mo≈æe naru√®iti vi≈°e puta.
 
 CREATE TABLE DetaljiNarudzbe
 (
@@ -91,13 +91,13 @@ OpisSpecijalnePonude NVARCHAR(255) NOT NULL
 
 --9 bodova
 
---3. Iz baze podataka AdventureWorks u svoju bazu podataka prebaciti sljedeÊe podatke:
---a) U tabelu Prodavaci dodati sve prodavaËe
---ï BusinessEntityID (SalesPerson) -> ProdavacID
---ï FirstName (Person) -> Ime
---ï LastName (Person) -> Prezime
---ï JobTitle (Employee) -> OpisPosla
---ï EmailAddress (EmailAddress) -> EmailAdresa
+--3. Iz baze podataka AdventureWorks u svoju bazu podataka prebaciti sljede√¶e podatke:
+--a) U tabelu Prodavaci dodati sve prodava√®e
+--‚Ä¢ BusinessEntityID (SalesPerson) -> ProdavacID
+--‚Ä¢ FirstName (Person) -> Ime
+--‚Ä¢ LastName (Person) -> Prezime
+--‚Ä¢ JobTitle (Employee) -> OpisPosla
+--‚Ä¢ EmailAddress (EmailAddress) -> EmailAdresa
 SET IDENTITY_INSERT Prodavaci ON
 INSERT INTO Prodavaci(ProdavacID,Ime,Prezime,OpisPosla,EmailAdresa)
 SELECT 
@@ -115,11 +115,11 @@ SET IDENTITY_INSERT Prodavaci OFF
 SELECT * FROM Prodavaci
 
 --b) U tabelu Proizvodi dodati sve proizvode
---ï ProductID (Product)-> ProizvodID
---ï Name (Product)-> Naziv
---ï ProductNumber (Product)-> SifraProizvoda
---ï Color (Product)-> Boja 
---ï Name (ProductSubategory) -> NazivPodkategorije
+--‚Ä¢ ProductID (Product)-> ProizvodID
+--‚Ä¢ Name (Product)-> Naziv
+--‚Ä¢ ProductNumber (Product)-> SifraProizvoda
+--‚Ä¢ Color (Product)-> Boja 
+--‚Ä¢ Name (ProductSubategory) -> NazivPodkategorije
 
 SET IDENTITY_INSERT Proizvodi ON
 INSERT INTO Proizvodi(ProizvodID,Naziv,SifraProizvoda,Boja,NazivPodkategorije)
@@ -128,16 +128,16 @@ FROM AdventureWorks2019.Production.Product AS p
 JOIN AdventureWorks2019.Production.ProductCategory AS pc ON p.ProductSubcategoryID=pc.ProductCategoryID
 SET IDENTITY_INSERT Proizvodi OFF
 
---c) U tabelu ZaglavljeNarudzbe dodati sve narudûbe
---ï SalesOrderID (SalesOrderHeader) -> NarudzbaID
---ï OrderDate (SalesOrderHeader)-> DatumNarudzbe
---ï ShipDate (SalesOrderHeader)-> DatumIsporuke
---ï CreditCardID(SalesOrderID)-> KreditnaKarticaID
---ï FirstName (Person) -> ImeKupca
---ï LastName (Person) -> PrezimeKupca
---ï City (Address) -> NazivGradaIsporuke
---ï SalesPersonID (SalesOrderHeader)-> ProdavacID
---ï Name (ShipMethod)-> NacinIsporuke
+--c) U tabelu ZaglavljeNarudzbe dodati sve narud≈æbe
+--‚Ä¢ SalesOrderID (SalesOrderHeader) -> NarudzbaID
+--‚Ä¢ OrderDate (SalesOrderHeader)-> DatumNarudzbe
+--‚Ä¢ ShipDate (SalesOrderHeader)-> DatumIsporuke
+--‚Ä¢ CreditCardID(SalesOrderID)-> KreditnaKarticaID
+--‚Ä¢ FirstName (Person) -> ImeKupca
+--‚Ä¢ LastName (Person) -> PrezimeKupca
+--‚Ä¢ City (Address) -> NazivGradaIsporuke
+--‚Ä¢ SalesPersonID (SalesOrderHeader)-> ProdavacID
+--‚Ä¢ Name (ShipMethod)-> NacinIsporuke
 
 SET IDENTITY_INSERT ZaglavljeNarudzbe ON
 INSERT INTO ZaglavljeNarudzbe(NarudzbaID,DatumNarudzbe,DatumIsporuke,KreditnaKarticaID,ImeKupca,PrezimeKupca,NazivGradaIsporuke,ProdavacID,NacinIsporuke)
@@ -162,13 +162,13 @@ SET IDENTITY_INSERT ZaglavljeNarudzbe OFF
 
 
 
---d) U tabelu DetaljiNarudzbe dodati sve stavke narudûbe
---ï SalesOrderID (SalesOrderDetail)-> NarudzbaID
---ï ProductID (SalesOrderDetail)-> ProizvodID
---ï UnitPrice (SalesOrderDetail)-> Cijena
---ï OrderQty (SalesOrderDetail)-> Kolicina
---ï UnitPriceDiscount (SalesOrderDetail)-> Popust
---ï Description (SpecialOffer) -> OpisSpecijalnePonude
+--d) U tabelu DetaljiNarudzbe dodati sve stavke narud≈æbe
+--‚Ä¢ SalesOrderID (SalesOrderDetail)-> NarudzbaID
+--‚Ä¢ ProductID (SalesOrderDetail)-> ProizvodID
+--‚Ä¢ UnitPrice (SalesOrderDetail)-> Cijena
+--‚Ä¢ OrderQty (SalesOrderDetail)-> Kolicina
+--‚Ä¢ UnitPriceDiscount (SalesOrderDetail)-> Popust
+--‚Ä¢ Description (SpecialOffer) -> OpisSpecijalnePonude
 
 SET IDENTITY_INSERT DetaljiNarudzbe ON
 
@@ -190,10 +190,10 @@ SET IDENTITY_INSERT DetaljiNarudzbe OFF
 --10 bodova
 --4.
 --a) (6 bodova) Kreirati funkciju f_detalji u formi tabele gdje korisniku slanjem parametra identifikacijski 
---broj narudûbe Êe biti ispisano spojeno ime i prezime kupca, grad isporuke, ukupna vrijednost narudûbe 
---sa popustom, te poruka da li je narudûba plaÊena karticom ili ne. Korisnik moûe dobiti 2 poruke ÑPlaÊeno 
---karticomì ili ÑNije plaÊeno karticomì. 
---OBAVEZNO kreirati testni sluËaj. (Novokreirana baza)
+--broj narud≈æbe √¶e biti ispisano spojeno ime i prezime kupca, grad isporuke, ukupna vrijednost narud≈æbe 
+--sa popustom, te poruka da li je narud≈æba pla√¶ena karticom ili ne. Korisnik mo≈æe dobiti 2 poruke ‚ÄûPla√¶eno 
+--karticom‚Äú ili ‚ÄûNije pla√¶eno karticom‚Äú. 
+--OBAVEZNO kreirati testni slu√®aj. (Novokreirana baza)
 
 GO 
 CREATE OR ALTER FUNCTION f_detalji
@@ -211,14 +211,14 @@ GO
 
 SELECT * FROM f_detalji(43660)
 
---b) (4 bodova) U kreiranoj bazi kreirati proceduru sp_insert_DetaljiNarudzbe kojom Êe se omoguÊiti insert
---nove stavke narudûbe. OBAVEZNO kreirati testni sluËaj. (Novokreirana baza)
+--b) (4 bodova) U kreiranoj bazi kreirati proceduru sp_insert_DetaljiNarudzbe kojom √¶e se omogu√¶iti insert
+--nove stavke narud≈æbe. OBAVEZNO kreirati testni slu√®aj. (Novokreirana baza)
 
 
---c) (6 bodova) Kreirati upit kojim Êe se prikazati ukupan broj proizvoda po kategorijama. Korisnicima se 
---treba ispisati o kojoj kategoriji se radi. Uslov je da se prikaûu samo one kategorije kojima pripada viöe 
---od 30 proizvoda, te da nazivi proizvoda se sastoje od 3 rijeËi, a sadrûe broj u bilo kojoj od rijeËi i joö 
---uvijek se nalaze u prodaji. Takoer, ukupan broj proizvoda po kategorijama mora biti veÊi od 50. 
+--c) (6 bodova) Kreirati upit kojim √¶e se prikazati ukupan broj proizvoda po kategorijama. Korisnicima se 
+--treba ispisati o kojoj kategoriji se radi. Uslov je da se prika≈æu samo one kategorije kojima pripada vi≈°e 
+--od 30 proizvoda, te da nazivi proizvoda se sastoje od 3 rije√®i, a sadr≈æe broj u bilo kojoj od rije√®i i jo≈° 
+--uvijek se nalaze u prodaji. Tako√∞er, ukupan broj proizvoda po kategorijama mora biti ve√¶i od 50. 
 --(AdventureWorks2017)
 
 GO
@@ -233,11 +233,11 @@ GROUP BY c.Name
 HAVING COUNT(c.ProductCategoryID)>30 
 
 
---d) (7 bodova) Za potrebe menadûmenta kompanije potrebno je kreirati upit kojim Êe se prikazati proizvodi
+--d) (7 bodova) Za potrebe menad≈æmenta kompanije potrebno je kreirati upit kojim √¶e se prikazati proizvodi
 --koji trenutno nisu u prodaji i ne pripada kategoriji bicikala, kako bi ih ponovno vratili u prodaju.
---Proizvodu se poËetkom i po prestanku prodaje zabiljeûi datum. Osnovni uslov za ponovno povlaËenje u 
---prodaju je to da je ukupna prodana koliËina za svaki proizvod pojedinaËno bila veÊa od 200 komada.
---Kao rezultat upita oËekuju se podaci u formatu npr. Laptop 300kom itd. (AdventureWorks2017)
+--Proizvodu se po√®etkom i po prestanku prodaje zabilje≈æi datum. Osnovni uslov za ponovno povla√®enje u 
+--prodaju je to da je ukupna prodana koli√®ina za svaki proizvod pojedina√®no bila ve√¶a od 200 komada.
+--Kao rezultat upita o√®ekuju se podaci u formatu npr. Laptop 300kom itd. (AdventureWorks2017)
 
 SELECT p.Name,SUM(sod.OrderQty) AS 'Uupno prodano'
 FROM Production.Product AS p
@@ -248,9 +248,9 @@ WHERE p.SellEndDate IS NOT NULL AND LOWER(c.Name) NOT LIKE 'bikes'
 GROUP BY p.Name
 HAVING SUM(sod.OrderQty)>200
 
---e) (7 bodova) Kreirati upit kojim Êe se prikazati identifikacijski broj narudûbe, spojeno ime i prezime kupca, 
---te ukupna vrijednost narudûbe koju je kupac platio. Uslov je da je od datuma narudûbe do datuma 
---isporuke proteklo manje dana od prosjeËnog broja dana koji je bio potreban za isporuku svih narudûbi. 
+--e) (7 bodova) Kreirati upit kojim √¶e se prikazati identifikacijski broj narud≈æbe, spojeno ime i prezime kupca, 
+--te ukupna vrijednost narud≈æbe koju je kupac platio. Uslov je da je od datuma narud≈æbe do datuma 
+--isporuke proteklo manje dana od prosje√®nog broja dana koji je bio potreban za isporuku svih narud≈æbi. 
 --(AdventureWorks2017)
 
 SELECT soh.SalesOrderID,CONCAT(p.FirstName,' ',p.LastName) AS 'Ime prezime kupca',soh.TotalDue
@@ -259,14 +259,14 @@ JOIN Sales.Customer AS c ON c.CustomerID=soh.CustomerID
 JOIN Person.Person AS p ON c.PersonID=p.BusinessEntityID
 WHERE DATEDIFF(DAY,soh.OrderDate,soh.ShipDate)<(SELECT AVG(DATEDIFF(DAY,soh.OrderDate,soh.ShipDate))
 												FROM Sales.SalesOrderHeader AS soh)										
-GROUP BY CONCAT(p.FirstName,' ',p.LastName),soh.SalesOrderID
+
 
 
 --30 bodova
 --5.
---a) (9 bodova) Kreirati upit koji Êe prikazati one naslove kojih je ukupno prodano viöe od 30 komada a 
---napisani su od strane autora koji su napisali 2 ili viöe djela/romana. U rezultatima upita prikazati naslov 
---i ukupnu prodanu koliËinu. (Pubs) 
+--a) (9 bodova) Kreirati upit koji √¶e prikazati one naslove kojih je ukupno prodano vi≈°e od 30 komada a 
+--napisani su od strane autora koji su napisali 2 ili vi≈°e djela/romana. U rezultatima upita prikazati naslov 
+--i ukupnu prodanu koli√®inu. (Pubs) 
 
 GO
 USE pubs
@@ -286,9 +286,9 @@ HAVING SUM(s.qty)>30
 
 
 
---b) (10 bodova) Kreirati upit koji Êe u % prikazati koliko je narudûbi (od ukupnog broja kreiranih) 
---isporuËeno na svaku od teritorija pojedinaËno. Npr Australia 20.2%, Canada 12.01% itd. Vrijednosti 
---dobijenih postotaka zaokruûiti na dvije decimale i dodati znak %. (AdventureWorks2017)
+--b) (10 bodova) Kreirati upit koji √¶e u % prikazati koliko je narud≈æbi (od ukupnog broja kreiranih) 
+--isporu√®eno na svaku od teritorija pojedina√®no. Npr Australia 20.2%, Canada 12.01% itd. Vrijednosti 
+--dobijenih postotaka zaokru≈æiti na dvije decimale i dodati znak %. (AdventureWorks2017)
 
 GO
 USE AdventureWorks2019
@@ -303,13 +303,13 @@ GROUP BY st.Name) AS PODQ
 
 SELECT * FROM Production.Product
 
---c) (12 bodova) Kreirati upit koji Êe prikazati osobe koje imaju redovne prihode a nemaju vanredne, i one 
---koje imaju vanredne a nemaju redovne. Lista treba da sadrûi spojeno ime i prezime osobe, grad i adresu 
+--c) (12 bodova) Kreirati upit koji √¶e prikazati osobe koje imaju redovne prihode a nemaju vanredne, i one 
+--koje imaju vanredne a nemaju redovne. Lista treba da sadr≈æi spojeno ime i prezime osobe, grad i adresu 
 --stanovanja i ukupnu vrijednost ostvarenih prihoda (za redovne koristiti neto). Pored navedenih podataka 
---potrebno je razgraniËiti kategorije u novom polju pod nazivom Opis na naËin "ISKLJU»IVO 
---VANREDNI" za one koji imaju samo vanredne prihode, ili "ISKLJU»IVO REDOVNI" za one koji 
---imaju samo redovne prihode. KonaËne rezultate sortirati prema opisu abecedno i po ukupnoj vrijednosti 
---ostvarenih prihoda u opadajuÊem redoslijedu. (prihodi)
+--potrebno je razgrani√®iti kategorije u novom polju pod nazivom Opis na na√®in "ISKLJU√àIVO 
+--VANREDNI" za one koji imaju samo vanredne prihode, ili "ISKLJU√àIVO REDOVNI" za one koji 
+--imaju samo redovne prihode. Kona√®ne rezultate sortirati prema opisu abecedno i po ukupnoj vrijednosti 
+--ostvarenih prihoda u opadaju√¶em redoslijedu. (prihodi)
 
 GO 
 USE prihodi
@@ -331,9 +331,9 @@ ORDER BY 4,5 DESC
 
 
 --31 bod
---6. Dokument teorijski_ispit 14JUL23, preimenovati vaöim brojem indeksa, te u tom dokumentu izraditi pitanja.
+--6. Dokument teorijski_ispit 14JUL23, preimenovati va≈°im brojem indeksa, te u tom dokumentu izraditi pitanja.
 --20 bodova
---SQL skriptu (bila prazna ili ne) imenovati Vaöim brojem indeksa npr IB210001.sql, teorijski dokument imenovan 
---Vaöim brojem indexa npr IB210001.docx upload-ovati ODVOJEDNO na ftp u folder Upload.
+--SQL skriptu (bila prazna ili ne) imenovati Va≈°im brojem indeksa npr IB210001.sql, teorijski dokument imenovan 
+--Va≈°im brojem indexa npr IB210001.docx upload-ovati ODVOJEDNO na ftp u folder Upload.
 --Maksimalan broj bodova:100 
 --Prag prolaznosti: 55
