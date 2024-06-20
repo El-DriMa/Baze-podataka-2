@@ -1,8 +1,8 @@
 --neki random zadaci sa proslih ispita
---1.(6 bodova) Kreirati upit koji æe prikazati ukupan broj uposlenika po odjelima. Potrebno je prebrojati 
---samo one uposlenike koji su trenutno aktivni, odnosno rade na datom odjelu. Takoðer, samo uzeti u obzir 
---one uposlenike koji imaju više od 10 godina radnog staža (ne ukljuèujuæi graniènu vrijednost). Rezultate 
---sortirati preba broju uposlenika u opadajuæem redoslijedu. (AdventureWorks2017)
+--1.(6 bodova) Kreirati upit koji Ã¦e prikazati ukupan broj uposlenika po odjelima. Potrebno je prebrojati 
+--samo one uposlenike koji su trenutno aktivni, odnosno rade na datom odjelu. TakoÃ°er, samo uzeti u obzir 
+--one uposlenike koji imaju viÅ¡e od 10 godina radnog staÅ¾a (ne ukljuÃ¨ujuÃ¦i graniÃ¨nu vrijednost). Rezultate 
+--sortirati preba broju uposlenika u opadajuÃ¦em redoslijedu. (AdventureWorks2017)
 
 GO
 USE AdventureWorks2019
@@ -15,18 +15,18 @@ WHERE ED.EndDate IS NULL AND DATEDIFF(YEAR,e.HireDate,GETDATE())>10
 GROUP BY d.Name
 ORDER BY 2 DESC
 
---2.a) (3 boda) U kreiranoj bazi kreirati index kojim æe se ubrzati pretraga prema šifri i nazivu proizvoda.
---Napisati upit za potpuno iskorištenje indexa.1
+--2.a) (3 boda) U kreiranoj bazi kreirati index kojim Ã¦e se ubrzati pretraga prema Å¡ifri i nazivu proizvoda.
+--Napisati upit za potpuno iskoriÅ¡tenje indexa.1
 
 USE View_
 
 CREATE INDEX IX_pretraga_ime
 ON Osoba(Ime)
 
---(7 bodova) U kreiranoj bazi kreirati proceduru sp_search_products kojom æe se vratiti podaci o 
+--(7 bodova) U kreiranoj bazi kreirati proceduru sp_search_products kojom Ã¦e se vratiti podaci o 
 --proizvodima na osnovu bilo kojeg parametra Korisnici ne moraju unijeti niti jedan od 
---parametara ali u tom sluèaju procedura ne vraæa niti jedan od zapisa. Korisnicima unosom veæ prvog 
---slova kategorije se trebaju osvježiti zapisi.
+--parametara ali u tom sluÃ¨aju procedura ne vraÃ¦a niti jedan od zapisa. Korisnicima unosom veÃ¦ prvog 
+--slova kategorije se trebaju osvjeÅ¾iti zapisi.
 
 USE ispitJun2022
 
@@ -48,19 +48,19 @@ END
 --drop procedure sp_pretraga_proizvoda
 EXEC sp_pretraga_proizvoda @Naziv='H'
 
---1. Kroz SQL kod kreirati bazu podataka sa imenom vašeg broja indeksa.
+--1. Kroz SQL kod kreirati bazu podataka sa imenom vaÅ¡eg broja indeksa.
 
 GO
 CREATE DATABASE randomIspit
 
 USE randomIspit
---2. U kreiranoj bazi podataka kreirati tabele sa sljedeæom strukturom:
+--2. U kreiranoj bazi podataka kreirati tabele sa sljedeÃ¦om strukturom:
 --a) Prodavaci
---• ProdavacID, cjelobrojna vrijednost i primarni kljuè, autoinkrement
---• Ime, 50 UNICODE (obavezan unos)
---• Prezime, 50 UNICODE (obavezan unos)
---• OpisPosla, 50 UNICODE karaktera (obavezan unos)
---• EmailAdresa, 50 UNICODE karaktera 
+--â€¢ ProdavacID, cjelobrojna vrijednost i primarni kljuÃ¨, autoinkrement
+--â€¢ Ime, 50 UNICODE (obavezan unos)
+--â€¢ Prezime, 50 UNICODE (obavezan unos)
+--â€¢ OpisPosla, 50 UNICODE karaktera (obavezan unos)
+--â€¢ EmailAdresa, 50 UNICODE karaktera 
 
 CREATE TABLE Prodavaci
 (
@@ -72,11 +72,11 @@ EmailAdresa NVARCHAR(50)
 )
 
 --b) Proizvodi
---• ProizvodID, cjelobrojna vrijednost i primarni kljuè, autoinkrement
---• Naziv, 50 UNICODE karaktera (obavezan unos)
---• SifraProizvoda, 25 UNICODE karaktera (obavezan unos)
---• Boja, 15 UNICODE karaktera 
---• NazivPodkategorije, 50 UNICODE (obavezan unos)
+--â€¢ ProizvodID, cjelobrojna vrijednost i primarni kljuÃ¨, autoinkrement
+--â€¢ Naziv, 50 UNICODE karaktera (obavezan unos)
+--â€¢ SifraProizvoda, 25 UNICODE karaktera (obavezan unos)
+--â€¢ Boja, 15 UNICODE karaktera 
+--â€¢ NazivPodkategorije, 50 UNICODE (obavezan unos)
 
 CREATE TABLE Proizvodi 
 (
@@ -87,13 +87,13 @@ Boja NVARCHAR(15),
 NazivPodaktegorije NVARCHAR(50) NOT NULL
 )
 
---3. Iz baze podataka AdventureWorks u svoju bazu podataka prebaciti sljedeæe podatke:
---a) U tabelu Prodavaci dodati sve prodavaèe
---• BusinessEntityID (SalesPerson) -> ProdavacID
---• FirstName (Person) -> Ime
---• LastName (Person) -> Prezime
---• JobTitle (Employee) -> OpisPosla
---• EmailAddress (EmailAddress) -> EmailAdresa
+--3. Iz baze podataka AdventureWorks u svoju bazu podataka prebaciti sljedeÃ¦e podatke:
+--a) U tabelu Prodavaci dodati sve prodavaÃ¨e
+--â€¢ BusinessEntityID (SalesPerson) -> ProdavacID
+--â€¢ FirstName (Person) -> Ime
+--â€¢ LastName (Person) -> Prezime
+--â€¢ JobTitle (Employee) -> OpisPosla
+--â€¢ EmailAddress (EmailAddress) -> EmailAdresa
 
 SET IDENTITY_INSERT Prodavaci ON
 INSERT INTO Prodavaci(ProdavacID,Ime,Prezime,OpisPosla,EmailAdresa)
@@ -114,11 +114,11 @@ SELECT * FROM Prodavaci
 
 
 --b) U tabelu Proizvodi dodati sve proizvode
---• ProductID (Product)-> ProizvodID
---• Name (Product)-> Naziv
---• ProductNumber (Product)-> SifraProizvoda
---• Color (Product)-> Boja 
---• Name (ProductSubategory) -> NazivPodkategorije
+--â€¢ ProductID (Product)-> ProizvodID
+--â€¢ Name (Product)-> Naziv
+--â€¢ ProductNumber (Product)-> SifraProizvoda
+--â€¢ Color (Product)-> Boja 
+--â€¢ Name (ProductSubategory) -> NazivPodkategorije
 
 SET IDENTITY_INSERT Proizvodi ON 
 INSERT INTO Proizvodi(ProizvodID,Naziv,SifraProizvoda,Boja,NazivPodaktegorije)
@@ -205,10 +205,10 @@ JOIN HumanResources.EmployeeDepartmentHistory AS edh ON e.BusinessEntityID=edh.B
 JOIN HumanResources.Department AS d ON edh.DepartmentID=d.DepartmentID
 JOIN Person.Person AS p ON e.BusinessEntityID=p.BusinessEntityID
 WHERE (d.Name LIKE 'Marketing' OR d.Name LIKE 'Purchasing')  AND edh.EndDate IS NULL
-AND EXISTS (SELECT 1
+AND edh.BusinessEntityID IN (SELECT edh2.BusinessEntityID 
 		FROM HumanResources.EmployeeDepartmentHistory AS edh2 
-		WHERE e.BusinessEntityID=edh2.BusinessEntityID 
-		AND edh.EndDate IS NOT NULL)
+		GROUP BY edh2.BusinessEntityID 
+		HAVING COUNT(edh2.BusinessEntityID)>=2)
 
 
 
@@ -259,6 +259,9 @@ JOIN Sales.SalesOrderHeader AS soh ON sod.SalesOrderID=soh.SalesOrderID
 JOIN Sales.SalesPerson AS sp ON soh.SalesPersonID=sp.BusinessEntityID
 JOIN HumanResources.Employee AS e ON sp.BusinessEntityID=e.BusinessEntityID
 JOIN Person.Person AS p ON p.BusinessEntityID=e.BusinessEntityID
+WHERE soh.SalesOrderID IN(SELECT TOP 30 PERCENT soh1.SalesOrderID
+			  FROM Sales.SalesOrderHeader AS soh1
+			  ORDER BY soh1.OrderDate DESC)
 GROUP BY CONCAT(p.FirstName,' ',p.LastName)
 ORDER BY 2 DESC
 
