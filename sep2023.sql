@@ -1,20 +1,20 @@
 --22.09.2023.
---BAZE PODATAKA II – ISPIT
+--BAZE PODATAKA II â€“ ISPIT
 --***Prilikom izrade zadataka, OBAVEZNO iznad svakog zadatka napisati redni broj zadatka i tekst. Zadaci 
---koji ne budu oznaèeni na prethodno definisan naèin neæe biti evaluirani.
---1. Kroz SQL kod kreirati bazu podataka sa imenom vašeg broja indeksa.
+--koji ne budu oznaÄeni na prethodno definisan naÄin neÄ‡e biti evaluirani.
+--1. Kroz SQL kod kreirati bazu podataka sa imenom vaÅ¡eg broja indeksa.
 
 GO
 CREATE DATABASE ispitsep2023
 
 USE ispitsep2023
---2. U kreiranoj bazi podataka kreirati tabele sa sljedeæom strukturom:
+--2. U kreiranoj bazi podataka kreirati tabele sa sljedeÄ‡om strukturom:
 --a) Uposlenici
---• UposlenikID, 9 karaktera fiksne duine i primarni kljuè,
---• Ime, 20 karaktera (obavezan unos),
---• Prezime, 20 karaktera (obavezan unos),
---• DatumZaposlenja, polje za unos datuma i vremena (obavezan unos),
---• OpisPosla, 50 karaktera (obavezan unos)
+--â€¢ UposlenikID, 9 karaktera fiksne duÅ¾ine i primarni kljuÄ,
+--â€¢ Ime, 20 karaktera (obavezan unos),
+--â€¢ Prezime, 20 karaktera (obavezan unos),
+--â€¢ DatumZaposlenja, polje za unos datuma i vremena (obavezan unos),
+--â€¢ OpisPosla, 50 karaktera (obavezan unos)
 
 CREATE TABLE Uposlenici 
 (
@@ -26,13 +26,13 @@ OpisPosla NVARCHAR(50) NOT NULL
 )
 
 --b) Naslovi
---• NaslovID, 6 karaktera i primarni kljuè,
---• Naslov, 80 karaktera (obavezan unos),
---• Tip, 12 karaktera fiksne duine (obavezan unos),
---• Cijena, novèani tip podataka,
---• NazivIzdavaca, 40 karaktera,
---• GradIzadavaca, 20 karaktera,
---• DrzavaIzdavaca, 30 karaktera
+--â€¢ NaslovID, 6 karaktera i primarni kljuÄ,
+--â€¢ Naslov, 80 karaktera (obavezan unos),
+--â€¢ Tip, 12 karaktera fiksne duÅ¾ine (obavezan unos),
+--â€¢ Cijena, novÄani tip podataka,
+--â€¢ NazivIzdavaca, 40 karaktera,
+--â€¢ GradIzadavaca, 20 karaktera,
+--â€¢ DrzavaIzdavaca, 30 karaktera
 
 CREATE TABLE Naslovi
 (
@@ -47,9 +47,9 @@ DrzavaIzdavaca NVARCHAR(30)
 
 
 --d) Prodavnice
---• ProdavnicaID, 4 karaktera fiksne duine i primarni kljuè,
---• NazivProdavnice, 40 karaktera,
---• Grad, 40 karaktera
+--â€¢ ProdavnicaID, 4 karaktera fiksne duÅ¾ine i primarni kljuÄ,
+--â€¢ NazivProdavnice, 40 karaktera,
+--â€¢ Grad, 40 karaktera
 
 CREATE TABLE Prodavnice
 (
@@ -59,11 +59,11 @@ Grad NVARCHAR(40)
 )
 
 --c) Prodaja
---• ProdavnicaID, 4 karaktera fiksne duine, strani i primarni kljuè,
---• BrojNarudzbe, 20 karaktera, primarni kljuè,
---• NaslovID, 6 karaktera, strani i primarni kljuè,
---• DatumNarudzbe, polje za unos datuma i vremena (obavezan unos),
---• Kolicina, skraæeni cjelobrojni tip (obavezan unos)
+--â€¢ ProdavnicaID, 4 karaktera fiksne duÅ¾ine, strani i primarni kljuÄ,
+--â€¢ BrojNarudzbe, 20 karaktera, primarni kljuÄ,
+--â€¢ NaslovID, 6 karaktera, strani i primarni kljuÄ,
+--â€¢ DatumNarudzbe, polje za unos datuma i vremena (obavezan unos),
+--â€¢ Kolicina, skraÄ‡eni cjelobrojni tip (obavezan unos)
 
 CREATE TABLE Prodaja
 (
@@ -75,28 +75,28 @@ Kolicina TINYINT NOT NULL
 CONSTRAINT PK_Prodaja PRIMARY KEY(ProdavnicaID,BrojNarudzbe,NaslovID)
 )
 --6 bodova
---3. Iz baze podataka Pubs u svoju bazu podataka prebaciti sljedeæe podatke:
+--3. Iz baze podataka Pubs u svoju bazu podataka prebaciti sljedeÄ‡e podatke:
 --a) U tabelu Uposlenici dodati sve uposlenike
---• emp_id -> UposlenikID
---• fname -> Ime
---• lname -> Prezime
---• hire_date -> DatumZaposlenja
---• job_desc -> OpisPosla
+--â€¢ emp_id -> UposlenikID
+--â€¢ fname -> Ime
+--â€¢ lname -> Prezime
+--â€¢ hire_date -> DatumZaposlenja
+--â€¢ job_desc -> OpisPosla
 
 INSERT INTO Uposlenici
 SELECT e.emp_id,e.fname,e.lname,e.hire_date,j.job_desc
 FROM pubs.dbo.employee AS e
 JOIN pubs.dbo.jobs AS j ON e.job_id=j.job_id
 
---b) U tabelu Naslovi dodati sve naslove, na mjestima gdje nema pohranjenih podataka o nazivima izdavaèa
+--b) U tabelu Naslovi dodati sve naslove, na mjestima gdje nema pohranjenih podataka o nazivima izdavaÄa
 --zamijeniti vrijednost sa nepoznat izdavac
---• title_id -> NaslovID
---• title -> Naslov
---• type -> Tip
---• price -> Cijena
---• pub_name -> NazivIzdavaca
---• city -> GradIzdavaca
---• country -> DrzavaIzdavaca
+--â€¢ title_id -> NaslovID
+--â€¢ title -> Naslov
+--â€¢ type -> Tip
+--â€¢ price -> Cijena
+--â€¢ pub_name -> NazivIzdavaca
+--â€¢ city -> GradIzdavaca
+--â€¢ country -> DrzavaIzdavaca
 
 INSERT INTO Naslovi
 SELECT t.title_id,t.title,t.type,t.price,ISNULL(p.pub_name,'nepoznat izdavac'),p.city,p.country
@@ -104,11 +104,11 @@ FROM pubs.dbo.titles AS t
 JOIN pubs.dbo.publishers AS p ON t.pub_id=p.pub_id
 
 --c) U tabelu Prodaja dodati sve stavke iz tabele prodaja
---• stor_id -> ProdavnicaID
---• order_num -> BrojNarudzbe
---• title_id -> NaslovID
---• ord_date -> DatumNarudzbe
---• qty -> Kolicina
+--â€¢ stor_id -> ProdavnicaID
+--â€¢ order_num -> BrojNarudzbe
+--â€¢ title_id -> NaslovID
+--â€¢ ord_date -> DatumNarudzbe
+--â€¢ qty -> Kolicina
 
 INSERT INTO Prodaja
 SELECT s.stor_id,s.ord_num,s.title_id,s.ord_date,s.qty
@@ -116,9 +116,9 @@ FROM pubs.dbo.sales AS s
 
 --22.09.2023.
 --d) U tabelu Prodavnice dodati sve prodavnice
---• stor_id -> ProdavnicaID
---• store_name -> NazivProdavnice
---• city -> Grad
+--â€¢ stor_id -> ProdavnicaID
+--â€¢ store_name -> NazivProdavnice
+--â€¢ city -> Grad
 
 INSERT INTO Prodavnice
 SELECT s.stor_id,s.stor_name,s.city
@@ -126,9 +126,9 @@ FROM pubs.dbo.stores AS s
 
 --6 bodova
 --4.
---a) (6 bodova) Kreirati proceduru sp_update_naslov kojom æe se uraditi update podataka u tabelu Naslovi.
---Korisnik moe da pošalje jedan ili više parametara i pri tome voditi raèuna da se ne desi gubitak/brisanje 
---zapisa. OBAVEZNO kreirati testni sluèaj za kreiranu proceduru. (Novokreirana baza)
+--a) (6 bodova) Kreirati proceduru sp_update_naslov kojom Ä‡e se uraditi update podataka u tabelu Naslovi.
+--Korisnik moÅ¾e da poÅ¡alje jedan ili viÅ¡e parametara i pri tome voditi raÄuna da se ne desi gubitak/brisanje 
+--zapisa. OBAVEZNO kreirati testni sluÄaj za kreiranu proceduru. (Novokreirana baza)
 
 GO
 CREATE PROCEDURE sp_update_naslov
@@ -158,10 +158,10 @@ exec sp_update_naslov @NaslovID=BU1032,@Naslov='amnaaaaaa'
 SELECT * FROM Naslovi
 
 
---b) (7 bodova) Kreirati upit kojim æe se prikazati ukupna prodana kolièina i ukupna zarada bez popusta za 
---svaku kategoriju proizvoda pojedinaèno. Uslov je da proizvodi ne pripadaju kategoriji bicikala, da im je 
---boja bijela ili crna te da ukupna prodana kolièina nije veæa od 20000. Rezultate sortirati prema ukupnoj 
---zaradi u opadajuæem redoslijedu. (AdventureWorks2017)
+--b) (7 bodova) Kreirati upit kojim Ä‡e se prikazati ukupna prodana koliÄina i ukupna zarada bez popusta za 
+--svaku kategoriju proizvoda pojedinaÄno. Uslov je da proizvodi ne pripadaju kategoriji bicikala, da im je 
+--boja bijela ili crna te da ukupna prodana koliÄina nije veÄ‡a od 20000. Rezultate sortirati prema ukupnoj 
+--zaradi u opadajuÄ‡em redoslijedu. (AdventureWorks2017)
 
 GO
 USE AdventureWorks2019
@@ -176,9 +176,9 @@ GROUP BY c.Name
 HAVING SUM(sod.OrderQty)<20000
 ORDER BY 3 DESC
 
---c) (8 bodova) Kreirati upit koji prikazuje kupce koji su u maju mjesecu 2013 ili 2014 godine naruèili 
---proizvod „Front Brakes“ u kolièini veæoj od 5. Upitom prikazati spojeno ime i prezime kupca, email, 
---naruèenu kolièinu i datum narudbe formatiran na naèin dan.mjesec.godina (AdventureWorks2017)
+--c) (8 bodova) Kreirati upit koji prikazuje kupce koji su u maju mjesecu 2013 ili 2014 godine naruÄili 
+--proizvod â€Front Brakesâ€œ u koliÄini veÄ‡oj od 5. Upitom prikazati spojeno ime i prezime kupca, email, 
+--naruÄenu koliÄinu i datum narudÅ¾be formatiran na naÄin dan.mjesec.godina (AdventureWorks2017)
 
 SELECT CONCAT(p.FirstName,' ',p.LastName) AS 'Ime i prezime',ea.EmailAddress,sod.OrderQty,FORMAT(soh.OrderDate,'dd.MM.yyyy'),pr.Name
 FROM Sales.Customer AS c 
@@ -190,10 +190,10 @@ JOIN Person.EmailAddress AS ea ON ea.BusinessEntityID=be.BusinessEntityID
 JOIN Production.Product AS pr ON pr.ProductID=sod.ProductID
 WHERE YEAR(soh.OrderDate) IN (2014,2013) AND MONTH(soh.OrderDate)=5 AND pr.Name='Front Brakes' AND sod.OrderQty>5
 
---d) (10 bodova) Kreirati upit koji æe prikazati naziv kompanije dobavljaèa koja je dobavila proizvode, koji 
---se u najveæoj kolièini prodaju (najprodavaniji). Uslov je da proizvod pripada kategoriji morske hrane i 
---da je dostavljen/isporuèen kupcu. Takoğer uzeti u obzir samo one proizvode na kojima je popust odobren.
---U rezultatima upita prikazati naziv kompanije dobavljaèa i ukupnu prodanu kolièinu proizvoda.
+--d) (10 bodova) Kreirati upit koji Ä‡e prikazati naziv kompanije dobavljaÄa koja je dobavila proizvode, koji 
+--se u najveÄ‡oj koliÄini prodaju (najprodavaniji). Uslov je da proizvod pripada kategoriji morske hrane i 
+--da je dostavljen/isporuÄen kupcu. TakoÄ‘er uzeti u obzir samo one proizvode na kojima je popust odobren.
+--U rezultatima upita prikazati naziv kompanije dobavljaÄa i ukupnu prodanu koliÄinu proizvoda.
 --(Northwind)
 
 GO 
@@ -210,10 +210,10 @@ GROUP BY s.CompanyName
 ORDER BY 2 DESC
 
 
---e) (11 bodova) Kreirati upit kojim æe se prikazati narudbe u kojima je na osnovu popusta kupac uštedio 
---2000KM i više. Upit treba da sadri identifikacijski broj narudbe, spojeno ime i prezime kupca, te 
---stvarnu ukupnu vrijednost narudbe zaokruenu na 2 decimale. Rezultate sortirati po ukupnoj vrijednosti 
---narudbe u opadajuæem redoslijedu.
+--e) (11 bodova) Kreirati upit kojim Ä‡e se prikazati narudÅ¾be u kojima je na osnovu popusta kupac uÅ¡tedio 
+--2000KM i viÅ¡e. Upit treba da sadrÅ¾i identifikacijski broj narudÅ¾be, spojeno ime i prezime kupca, te 
+--stvarnu ukupnu vrijednost narudÅ¾be zaokruÅ¾enu na 2 decimale. Rezultate sortirati po ukupnoj vrijednosti 
+--narudÅ¾be u opadajuÄ‡em redoslijedu.
 
 GO
 USE AdventureWorks2019
@@ -229,8 +229,8 @@ ORDER BY 3 DESC
 
 -- 43 boda
 --5.
---a) (13 bodova) Kreirati upit koji æe prikazati kojom kompanijom (ShipMethod(Name)) je isporuèen najveæi 
---broj narudbi, a kojom najveæa ukupna kolièina proizvoda. (AdventureWorks2017)
+--a) (13 bodova) Kreirati upit koji Ä‡e prikazati kojom kompanijom (ShipMethod(Name)) je isporuÄen najveÄ‡i 
+--broj narudÅ¾bi, a kojom najveÄ‡a ukupna koliÄina proizvoda. (AdventureWorks2017)
 
 GO
 USE AdventureWorks2019
@@ -244,19 +244,18 @@ GROUP BY sm.Name
 ORDER BY 2 DESC) AS PODQ1
 UNION
 SELECT * FROM
-(SELECT TOP 1 sm.Name,COUNT(soh.SalesOrderID) AS 'Ukupan broj narudzbi'
+(SELECT TOP 1 sm.Name,COUNT(*) AS 'Ukupan broj narudzbi'
 FROM Purchasing.ShipMethod AS sm
 JOIN Sales.SalesOrderHeader AS soh ON soh.ShipMethodID=sm.ShipMethodID
-JOIN Sales.SalesOrderDetail AS sod ON soh.SalesOrderID=sod.SalesOrderID
 GROUP BY sm.Name
 ORDER BY 2 DESC) AS PODQ2
 
 
 
 
---b) (8 bodova) Modificirati prethodno kreirani upit na naèin ukoliko je jednom kompanijom istovremeno 
---isporuèen najveæi broj narudbi i najveæa ukupna kolièina proizvoda upitom prikazati poruku „Jedna 
---kompanija“, u suprotnom „Više kompanija“ (AdventureWorks2017)
+--b) (8 bodova) Modificirati prethodno kreirani upit na naÄin ukoliko je jednom kompanijom istovremeno 
+--isporuÄen najveÄ‡i broj narudÅ¾bi i najveÄ‡a ukupna koliÄina proizvoda upitom prikazati poruku â€Jedna 
+--kompanijaâ€œ, u suprotnom â€ViÅ¡e kompanijaâ€œ (AdventureWorks2017)
 
 SELECT IIF(COUNT(DISTINCT PODQ.Name)<2,'Jedna kompanija','Vise kompanija')
 FROM
@@ -277,8 +276,8 @@ UNION
 	ORDER BY 2 DESC) AS PODQ2 )AS PODQ
 
 
---c) (4 boda) Kreirati indeks IX_Naslovi_Naslov kojim æe se ubrzati pretraga prema naslovu. OBAVEZNO 
---kreirati testni sluèaj. (NovokreiranaBaza)
+--c) (4 boda) Kreirati indeks IX_Naslovi_Naslov kojim Ä‡e se ubrzati pretraga prema naslovu. OBAVEZNO 
+--kreirati testni sluÄaj. (NovokreiranaBaza)
 
 USE ispitsep2023
 
@@ -289,9 +288,9 @@ SELECT n.Naslov
 FROM Naslovi AS n
 
 --25 bodova
---6. Dokument teorijski_ispit 22SEP23, preimenovati vašim brojem indeksa, te u tom dokumentu izraditi pitanja.
+--6. Dokument teorijski_ispit 22SEP23, preimenovati vaÅ¡im brojem indeksa, te u tom dokumentu izraditi pitanja.
 --20 bodova
---SQL skriptu (bila prazna ili ne) imenovati Vašim brojem indeksa npr IB210001.sql, teorijski dokument imenovan 
---Vašim brojem indexa npr IB210001.docx upload-ovati ODVOJEDNO na ftp u folder Upload.
+--SQL skriptu (bila prazna ili ne) imenovati VaÅ¡im brojem indeksa npr IB210001.sql, teorijski dokument imenovan 
+--VaÅ¡im brojem indexa npr IB210001.docx upload-ovati ODVOJEDNO na ftp u folder Upload.
 --Maksimalan broj bodova:100 
 --Prag prolaznosti: 55
