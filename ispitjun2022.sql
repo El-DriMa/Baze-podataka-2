@@ -1,16 +1,16 @@
---1. Kroz SQL kod kreirati bazu podataka sa imenom vaöeg broja indeksa.
+--1. Kroz SQL kod kreirati bazu podataka sa imenom va≈°eg broja indeksa.
 CREATE DATABASE ispitJun2022
 GO
 USE ispitJun2022
 
---2. U kreiranoj bazi podataka kreirati tabele sa sljedeÊom strukturom:
+--2. U kreiranoj bazi podataka kreirati tabele sa sljede√¶om strukturom:
 --a) Proizvodi
---ï ProizvodID, cjelobrojna vrijednost i primarni kljuË, autoinkrement
---ï Naziv, 50 UNICODE karaktera (obavezan unos)
---ï SifraProizvoda, 25 UNICODE karaktera (obavezan unos)
---ï Boja, 15 UNICODE karaktera
---ï NazivKategorije, 50 UNICODE (obavezan unos)
---ï Tezina, decimalna vrijednost sa 2 znaka iza zareza
+--‚Ä¢ ProizvodID, cjelobrojna vrijednost i primarni klju√®, autoinkrement
+--‚Ä¢ Naziv, 50 UNICODE karaktera (obavezan unos)
+--‚Ä¢ SifraProizvoda, 25 UNICODE karaktera (obavezan unos)
+--‚Ä¢ Boja, 15 UNICODE karaktera
+--‚Ä¢ NazivKategorije, 50 UNICODE (obavezan unos)
+--‚Ä¢ Tezina, decimalna vrijednost sa 2 znaka iza zareza
 CREATE TABLE Proizvodi(
 ProizvodID INT PRIMARY KEY IDENTITY (1,1),
 Naziv NVARCHAR(50) NOT NULL,
@@ -20,14 +20,14 @@ NazivKategorije NVARCHAR(50) NOT NULL,
 Tezina DECIMAL(10,2)
 )
 --b) ZaglavljeNarudzbe
---ï NarudzbaID, cjelobrojna vrijednost i primarni kljuË, autoinkrement
---ï DatumNarudzbe, polje za unos datuma i vremena (obavezan unos)
---ï DatumIsporuke, polje za unos datuma i vremena
---ï ImeKupca, 50 UNICODE (obavezan unos)
---ï PrezimeKupca, 50 UNICODE (obavezan unos)
---ï NazivTeritorije, 50 UNICODE (obavezan unos)
---ï NazivRegije, 50 UNICODE (obavezan unos)
---ï NacinIsporuke, 50 UNICODE (obavezan unos)
+--‚Ä¢ NarudzbaID, cjelobrojna vrijednost i primarni klju√®, autoinkrement
+--‚Ä¢ DatumNarudzbe, polje za unos datuma i vremena (obavezan unos)
+--‚Ä¢ DatumIsporuke, polje za unos datuma i vremena
+--‚Ä¢ ImeKupca, 50 UNICODE (obavezan unos)
+--‚Ä¢ PrezimeKupca, 50 UNICODE (obavezan unos)
+--‚Ä¢ NazivTeritorije, 50 UNICODE (obavezan unos)
+--‚Ä¢ NazivRegije, 50 UNICODE (obavezan unos)
+--‚Ä¢ NacinIsporuke, 50 UNICODE (obavezan unos)
 CREATE TABLE ZaglavljeNarudzbe (
 NarudzbaID INT PRIMARY KEY IDENTITY (1,1),
 DatumNarudzbe DATETIME NOT NULL,
@@ -39,11 +39,11 @@ NazivRegije NVARCHAR(50) NOT NULL,
 NacinIsporuke NVARCHAR(50) NOT NULL
 )
 --c) DetaljiNarudzbe
---ï NarudzbaID, cjelobrojna vrijednost, obavezan unos i strani kljuË
---ï ProizvodID, cjelobrojna vrijednost, obavezan unos i strani kljuË
---ï Cijena, novËani tip (obavezan unos),
---ï Kolicina, skraÊeni cjelobrojni tip (obavezan unos),
---ï Popust, novËani tip (obavezan unos)
+--‚Ä¢ NarudzbaID, cjelobrojna vrijednost, obavezan unos i strani klju√®
+--‚Ä¢ ProizvodID, cjelobrojna vrijednost, obavezan unos i strani klju√®
+--‚Ä¢ Cijena, nov√®ani tip (obavezan unos),
+--‚Ä¢ Kolicina, skra√¶eni cjelobrojni tip (obavezan unos),
+--‚Ä¢ Popust, nov√®ani tip (obavezan unos)
 CREATE TABLE DetaljiNarudzbe(
 NarudzbaID INT NOT NULL FOREIGN KEY REFERENCES ZaglavljeNarudzbe(NarudzbaID),
 ProizvodID INT NOT NULL FOREIGN KEY REFERENCES Proizvodi(ProizvodID),
@@ -51,18 +51,18 @@ Cijena MONEY NOT NULL,
 Kolicina TINYINT NOT NULL,
 Popust MONEY NOT NULL
 )
---**Jedan proizvod se moûe viöe puta naruËiti, dok jedna narudûba moûe sadrûavati viöe proizvoda. U okviru jedne
---narudûbe jedan proizvod se moûe naruËiti viöe puta.
+--**Jedan proizvod se mo≈æe vi≈°e puta naru√®iti, dok jedna narud≈æba mo≈æe sadr≈æavati vi≈°e proizvoda. U okviru jedne
+--narud≈æbe jedan proizvod se mo≈æe naru√®iti vi≈°e puta.
 
---3. Iz baze podataka AdventureWorks u svoju bazu podataka prebaciti sljedeÊe podatke:
---a) U tabelu Proizvodi dodati sve proizvode, na mjestima gdje nema pohranjenih podataka o teûini
+--3. Iz baze podataka AdventureWorks u svoju bazu podataka prebaciti sljede√¶e podatke:
+--a) U tabelu Proizvodi dodati sve proizvode, na mjestima gdje nema pohranjenih podataka o te≈æini
 --zamijeniti vrijednost sa 0
---ï ProductID -> ProizvodID
---ï Name -> Naziv
---ï ProductNumber -> SifraProizvoda
---ï Color -> Boja
---ï Name (ProductCategory) -> NazivKategorije
---ï Weight -> Tezina
+--‚Ä¢ ProductID -> ProizvodID
+--‚Ä¢ Name -> Naziv
+--‚Ä¢ ProductNumber -> SifraProizvoda
+--‚Ä¢ Color -> Boja
+--‚Ä¢ Name (ProductCategory) -> NazivKategorije
+--‚Ä¢ Weight -> Tezina
 
 SET IDENTITY_INSERT Proizvodi ON;
 INSERT INTO Proizvodi(ProizvodID,Naziv,SifraProizvoda,Boja,NazivKategorije,Tezina)
@@ -79,15 +79,15 @@ JOIN AdventureWorks2019.Production.ProductCategory AS pc ON psc.ProductCategoryI
 
 SELECT * FROM Proizvodi
 
---b) U tabelu ZaglavljeNarudzbe dodati sve narudûbe
---ï SalesOrderID -> NarudzbaID
---ï OrderDate -> DatumNarudzbe
---ï ShipDate -> DatumIsporuke
---ï FirstName (Person) -> ImeKupca
---ï LastName (Person) -> PrezimeKupca
---ï Name (SalesTerritory) -> NazivTeritorije
---ï Group (SalesTerritory) -> NazivRegije
---ï Name (ShipMethod) -> NacinIsporuke
+--b) U tabelu ZaglavljeNarudzbe dodati sve narud≈æbe
+--‚Ä¢ SalesOrderID -> NarudzbaID
+--‚Ä¢ OrderDate -> DatumNarudzbe
+--‚Ä¢ ShipDate -> DatumIsporuke
+--‚Ä¢ FirstName (Person) -> ImeKupca
+--‚Ä¢ LastName (Person) -> PrezimeKupca
+--‚Ä¢ Name (SalesTerritory) -> NazivTeritorije
+--‚Ä¢ Group (SalesTerritory) -> NazivRegije
+--‚Ä¢ Name (ShipMethod) -> NacinIsporuke
 
 SET IDENTITY_INSERT Proizvodi OFF;
 SET IDENTITY_INSERT ZaglavljeNarudzbe ON;
@@ -110,12 +110,12 @@ JOIN AdventureWorks2019.Purchasing.ShipMethod AS sm ON sm.ShipMethodID=soh.ShipM
 
 SELECT * FROM ZaglavljeNarudzbe
 
---c) U tabelu DetaljiNarudzbe dodati sve stavke narudûbe
---ï SalesOrderID -> NarudzbaID
---ï ProductID -> ProizvodID
---ï UnitPrice -> Cijena
---ï OrderQty -> Kolicina
---ï UnitPriceDiscount -> Popust
+--c) U tabelu DetaljiNarudzbe dodati sve stavke narud≈æbe
+--‚Ä¢ SalesOrderID -> NarudzbaID
+--‚Ä¢ ProductID -> ProizvodID
+--‚Ä¢ UnitPrice -> Cijena
+--‚Ä¢ OrderQty -> Kolicina
+--‚Ä¢ UnitPriceDiscount -> Popust
 
 
 INSERT INTO DetaljiNarudzbe(NarudzbaID,ProizvodID,Cijena,Kolicina,Popust)
@@ -130,10 +130,10 @@ FROM AdventureWorks2019.Sales.SalesOrderDetail AS sod
 SELECT * FROM DetaljiNarudzbe
 
 --4.
---a) (6 bodova) Kreirati upit koji Êe prikazati ukupan broj uposlenika po odjelima. Potrebno je prebrojati 
---samo one uposlenike koji su trenutno aktivni, odnosno rade na datom odjelu. Takoer, samo uzeti u obzir 
---one uposlenike koji imaju viöe od 10 godina radnog staûa (ne ukljuËujuÊi graniËnu vrijednost). Rezultate 
---sortirati preba broju uposlenika u opadajuÊem redoslijedu. (AdventureWorks2017)
+--a) (6 bodova) Kreirati upit koji √¶e prikazati ukupan broj uposlenika po odjelima. Potrebno je prebrojati 
+--samo one uposlenike koji su trenutno aktivni, odnosno rade na datom odjelu. Tako√∞er, samo uzeti u obzir 
+--one uposlenike koji imaju vi≈°e od 10 godina radnog sta≈æa (ne uklju√®uju√¶i grani√®nu vrijednost). Rezultate 
+--sortirati preba broju uposlenika u opadaju√¶em redoslijedu. (AdventureWorks2017)
 
 USE AdventureWorks2019
 GO
@@ -146,15 +146,15 @@ WHERE DATEDIFF(YEAR,e.BirthDate,e.HireDate)>10 AND edh.EndDate IS NULL
 GROUP BY d.Name
 ORDER BY 2 DESC
 
---b) (10 bodova) Kreirati upit koji prikazuje po mjesecima ukupnu vrijednost poruËene robe za skladiöte, te 
---ukupnu koliËinu primljene robe, iskljuËivo u 2012 godini. Uslov je da su troökovi prevoza bili izmeu 
---500 i 2500, a da je dostava izvröena CARGO transportom. Takoer u rezultatima upita je potrebno 
---prebrojati stavke narudûbe na kojima je odbijena koliËina veÊa od 100. (AdventureWorks2017)
+--b) (10 bodova) Kreirati upit koji prikazuje po mjesecima ukupnu vrijednost poru√®ene robe za skladi≈°te, te 
+--ukupnu koli√®inu primljene robe, isklju√®ivo u 2012 godini. Uslov je da su tro≈°kovi prevoza bili izme√∞u 
+--500 i 2500, a da je dostava izvr≈°ena CARGO transportom. Tako√∞er u rezultatima upita je potrebno 
+--prebrojati stavke narud≈æbe na kojima je odbijena koli√®ina ve√¶a od 100. (AdventureWorks2017)
 
-SELECT MONTH(poh.OrderDate) AS 'Mjesec', SUM(pod.OrderQty) AS 'Ukupna kolicina robe',SUM(pod.LineTotal) AS 'Ukupna vrijednost robe',
-COUNT(CASE WHEN pod.RejectedQty > 100 THEN 1 END) AS 'Broj stavki s odbijenom kolicinom > 100'
+SELECT MONTH(poh.OrderDate) AS 'Mjesec',SUM(pod.LineTotal) AS 'Ukupna vrijednost robe', SUM(pod.ReceivedQty) AS 'Ukupna kolicina robe',
+SUM(IIF(pod.RejectedQty>100,1,0)) AS 'Broj stavki s odbijenom kolicinom > 100'
 FROM Purchasing.PurchaseOrderDetail AS pod
-JOIN Purchasing.PurchaseOrderHeader AS poh ON pod.PurchaseOrderDetailID=poh.PurchaseOrderID
+JOIN Purchasing.PurchaseOrderHeader AS poh ON pod.PurchaseOrderID=poh.PurchaseOrderID
 JOIN Purchasing.ShipMethod AS sm ON poh.ShipMethodID=sm.ShipMethodID
 WHERE YEAR(poh.OrderDate)=2012
 AND poh.Freight BETWEEN 500 AND 2500 
@@ -162,9 +162,9 @@ AND sm.Name LIKE '%CARGO%'
 GROUP BY MONTH(poh.OrderDate)
 
 
---c) (10 bodova) Prikazati ukupan broj narudûbi koje su obradili uposlenici, za svakog uposlenika 
---pojedinaËno. Uslov je da su narudûbe kreirane u 2011 ili 2012 godini, te da je u okviru jedne narudûbe 
---odobren popust na dvije ili viöe stavki. Takoer uzeti u obzir samo one narudûbe koje su isporuËene u 
+--c) (10 bodova) Prikazati ukupan broj narud≈æbi koje su obradili uposlenici, za svakog uposlenika 
+--pojedina√®no. Uslov je da su narud≈æbe kreirane u 2011 ili 2012 godini, te da je u okviru jedne narud≈æbe 
+--odobren popust na dvije ili vi≈°e stavki. Tako√∞er uzeti u obzir samo one narud≈æbe koje su isporu√®ene u 
 --Veliku Britaniju, Kanadu ili Francusku. (AdventureWorks2017)
 
 SELECT CONCAT(p.FirstName,' ',p.LastName) AS 'Ime prezime',COUNT(DISTINCT soh.SalesOrderID) AS 'Ukupno narudzbi'
@@ -176,16 +176,16 @@ WHERE YEAR(soh.OrderDate) IN (2011,2012) AND t.Name IN ('UK','Canada','France')
 GROUP BY CONCAT(p.FirstName,' ',p.LastName) 
 HAVING COUNT(DISTINCT CASE WHEN sod.UnitPriceDiscount > 0 THEN soh.SalesOrderID END) >= 2
 
---d) (11 bodova) Napisati upit koji Êe prikazati sljedeÊe podatke o proizvodima: naziv proizvoda, naziv 
---kompanije dobavljaËa, koliËinu na skladiötu, te kreiranu öifru proizvoda. äifra se sastoji od sljedeÊih 
+--d) (11 bodova) Napisati upit koji √¶e prikazati sljede√¶e podatke o proizvodima: naziv proizvoda, naziv 
+--kompanije dobavlja√®a, koli√®inu na skladi≈°tu, te kreiranu ≈°ifru proizvoda. ≈†ifra se sastoji od sljede√¶ih 
 --vrijednosti: (Northwind)
 --1) Prva dva slova naziva proizvoda
 --2) Karakter /
---3) Prva dva slova druge rijeËi naziva kompanije dobavljaËa, uzeti u obzir one kompanije koje u 
---nazivu imaju 2 ili 3 rijeËi
+--3) Prva dva slova druge rije√®i naziva kompanije dobavlja√®a, uzeti u obzir one kompanije koje u 
+--nazivu imaju 2 ili 3 rije√®i
 --4) ID proizvoda, po pravilu ukoliko se radi o jednocifrenom broju na njega dodati slovo 'a', u 
 --suprotnom uzeti obrnutu vrijednost broja
---Npr. Za proizvod sa nazivom Chai i sa dobavljaËem naziva Exotic Liquids, öifra Êe btiti Ch/Li1a.
+--Npr. Za proizvod sa nazivom Chai i sa dobavlja√®em naziva Exotic Liquids, ≈°ifra √¶e btiti Ch/Li1a.
 
 USE Northwind
 GO
@@ -208,16 +208,16 @@ WHERE LEN(s.CompanyName)-LEN(REPLACE(s.CompanyName,' ',''))>=1
 
 
 --5.
---a) (3 boda) U kreiranoj bazi kreirati index kojim Êe se ubrzati pretraga prema öifri i nazivu proizvoda.
---Napisati upit za potpuno iskoriötenje indexa.
+--a) (3 boda) U kreiranoj bazi kreirati index kojim √¶e se ubrzati pretraga prema ≈°ifri i nazivu proizvoda.
+--Napisati upit za potpuno iskori≈°tenje indexa.
 CREATE INDEX IX_Proizvodi_Ime_Sifra
 ON Proizvodi(SifraProizvoda,Naziv)
 
---b) (7 bodova) U kreiranoj bazi kreirati proceduru sp_search_products kojom Êe se vratiti podaci o 
---proizvodima na osnovu kategorije kojoj pripadaju ili teûini. Korisnici ne moraju unijeti niti jedan od 
---parametara ali u tom sluËaju procedura ne vraÊa niti jedan od zapisa. Korisnicima unosom veÊ prvog 
---slova kategorije se trebaju osvjeûiti zapisi, a vrijednost unesenog parametra teûina Êe vratiti one 
---proizvode Ëija teûina je veÊa od unesene vrijednosti.
+--b) (7 bodova) U kreiranoj bazi kreirati proceduru sp_search_products kojom √¶e se vratiti podaci o 
+--proizvodima na osnovu kategorije kojoj pripadaju ili te≈æini. Korisnici ne moraju unijeti niti jedan od 
+--parametara ali u tom slu√®aju procedura ne vra√¶a niti jedan od zapisa. Korisnicima unosom ve√¶ prvog 
+--slova kategorije se trebaju osvje≈æiti zapisi, a vrijednost unesenog parametra te≈æina √¶e vratiti one 
+--proizvode √®ija te≈æina je ve√¶a od unesene vrijednosti.
 
 USE ispitJun2022
 
@@ -236,17 +236,17 @@ END
 EXEC sp_search_products @Kategorija='b'
 GO
 
---c) (18 bodova) Zbog proglaöenja dobitnika nagradne igre odrûane u prva dva mjeseca drugog kvartala 2013 
---godine potrebno je kreirati upit. Upitom Êe se prikazati treÊa najveÊa narudûba (vrijednost bez popusta)
---za svaki mjesec pojedinaËno. Obzirom da je u pravilima nagradne igre potrebno nagraditi 2 osobe 
---(muökarca i ûenu) za svaki mjesec, potrebno je u rezultatima upita prikazati pored navedenih stavki i o 
+--c) (18 bodova) Zbog progla≈°enja dobitnika nagradne igre odr≈æane u prva dva mjeseca drugog kvartala 2013 
+--godine potrebno je kreirati upit. Upitom √¶e se prikazati tre√¶a najve√¶a narud≈æba (vrijednost bez popusta)
+--za svaki mjesec pojedina√®no. Obzirom da je u pravilima nagradne igre potrebno nagraditi 2 osobe 
+--(mu≈°karca i ≈æenu) za svaki mjesec, potrebno je u rezultatima upita prikazati pored navedenih stavki i o 
 --kojem se kupcu radi odnosno ime i prezime, te koju je nagradu osvojio. Nagrade se dodjeljuju po 
---sljedeÊem pravilu:
---ï za ûene u prvom mjesecu drugog kvartala je stoni mikser, dok je za muökarce usisivaË
---ï za ûene u drugom mjesecu drugog kvartala je pegla, dok je za muökarc multicooker
---Obzirom da za kupce nije eksplicitno naveden spol, odreivat Êe se po pravilu: Ako je zadnje slovo imena 
---a, smatra se da je osoba ûenskog spola u suprotnom radi se o osobi muökog spola. Rezultate u formiranoj 
---tabeli dobitnika sortirati prema vrijednosti narudûbe u opadajuÊem redoslijedu. (AdventureWorks2017)
+--sljede√¶em pravilu:
+--‚Ä¢ za ≈æene u prvom mjesecu drugog kvartala je stoni mikser, dok je za mu≈°karce usisiva√®
+--‚Ä¢ za ≈æene u drugom mjesecu drugog kvartala je pegla, dok je za mu≈°karc multicooker
+--Obzirom da za kupce nije eksplicitno naveden spol, odre√∞ivat √¶e se po pravilu: Ako je zadnje slovo imena 
+--a, smatra se da je osoba ≈æenskog spola u suprotnom radi se o osobi mu≈°kog spola. Rezultate u formiranoj 
+--tabeli dobitnika sortirati prema vrijednosti narud≈æbe u opadaju√¶em redoslijedu. (AdventureWorks2017)
 
 USE AdventureWorks2019
 --MRSKO MI RAZMISLJAT O OVOM A NE GA RADIT 
