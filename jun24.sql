@@ -195,7 +195,7 @@ SELECT TOP 10 p.ProductID,p.Name,SUM(sod.OrderQty) AS 'Ukupna kolicina'
  --b) Prikazati ime i prezime kupca,id narudzbe te ukupnu vrijednost narudzbe sa popustom (na 2 dec), uz uslov
  --da su na nivou pojedine narudzbe naruceni proizvodi iz svih kategorija
 
- SELECT pe.FirstName,pe.LastName,soh.SalesOrderID,ROUND(SUM(sod.LineTotal),2) AS 'Ukupno'
+ SELECT pe.FirstName,pe.LastName,soh.SalesOrderID,ROUND(SUM(soh.SubTotal),2) AS 'Ukupno'
  FROM Sales.SalesOrderHeader AS soh 
  JOIN Sales.Customer AS c ON soh.CustomerID=c.CustomerID
  JOIN Person.Person AS pe ON c.PersonID=pe.BusinessEntityID
