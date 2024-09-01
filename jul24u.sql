@@ -231,5 +231,26 @@ HAVING COUNT(DISTINCT MONTH(sq.Mjesec))>=5
 
 --b) (16 bodova) Prikazati 5 narudzbi sa najvise narucenih razlicitih proizvoda i 5 narudzbi sa najvise porizvoda koji pripadaju razlicitim potkategorijama.
 	--Upitom prikazati ime i prezime kupca,id narudzbe te ukupnu vrijednost narudzbe sa popoustom zaokruzenu na 2 decimale (AdventureWorks)
-	--ne znam i mrsko mi razmisljat :(
 
+SELECT PODQ1.Kupac,PODQ1.SalesOrderID,PODQ1.Ukupno
+FROM (
+SELECT TOP 5 sod.SalesOrderID,COUNT(DISTINCT sod.ProductID) AS 'Proizvoda',CONCAT(pe.FirstName,' ',pe.LastName) AS 'Kupac',ROUND(SUM(soh.TotalDue),2) AS 'Ukupno'
+FROM Sales.SalesOrderDetail AS sod
+JOIN Sales.SalesOrderHeader AS soh ON sod.SalesOrderID=soh.SalesOrderID
+JOIN Sales.Customer AS c ON soh.CustomerID=c.CustomerID
+JOIN Person.Person AS pe ON c.PersonID=pe.BusinessEntityID
+GROUP BY sod.SalesOrderID,CONCAT(pe.FirstName,' ',pe.LastName)
+ORDER BY 2 DESC 
+) AS PODQ1
+UNION ALL
+SELECT PODQ2.Kupac,PODQ2.SalesOrderID,PODQ2.Ukupno
+FROM(
+SELECT TOP 5 sod.SalesOrderID,COUNT(DISTINCT p.ProductSubcategoryID) AS 'Kategorije',CONCAT(pe.FirstName,' ',pe.LastName) AS 'Kupac',ROUND(SUM(soh.TotalDue),2) AS 'Ukupno'
+FROM Sales.SalesOrderDetail AS sod
+JOIN Production.Product AS p ON sod.ProductID=p.ProductID
+JOIN Sales.SalesOrderHeader AS soh ON sod.SalesOrderID=soh.SalesOrderID
+JOIN Sales.Customer AS c ON soh.CustomerID=c.CustomerID
+JOIN Person.Person AS pe ON c.PersonID=pe.BusinessEntityID
+GROUP BY sod.SalesOrderID,CONCAT(pe.FirstName,' ',pe.LastName)
+ORDER BY 2 DESC 
+) AS PODQ2
