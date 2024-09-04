@@ -220,15 +220,13 @@ ORDER BY COUNT(soh.SalesOrderID) DESC
 --5.
 --a) (11 bodova) Prikazati kupce koji su kreirali narudzbe u minimalno 5 razlicitih mjeseci u 2012 godini.
 
-SELECT sq.CustomerID,COUNT(DISTINCT MONTH(sq.Mjesec)) AS 'Broj mjeseci'
-FROM(
-	SELECT soh.CustomerID,MONTH(soh.OrderDate) AS 'Mjesec'
-	FROM Sales.SalesOrderHeader AS soh
-	WHERE YEAR(soh.OrderDate)=2012
-	GROUP BY soh.CustomerID,MONTH(soh.OrderDate)
-) AS sq
-GROUP BY sq.CustomerID
-HAVING COUNT(DISTINCT MONTH(sq.Mjesec))>=5
+
+SELECT soh.CustomerID,COUNT(DISTINCT MONTH(soh.OrderDate)) AS 'Broj mjeseci'
+FROM Sales.SalesOrderHeader AS soh
+WHERE YEAR(soh.OrderDate)=2012 
+GROUP BY soh.CustomerID
+HAVING COUNT(DISTINCT MONTH(soh.OrderDate))>=5
+ORDER BY COUNT(DISTINCT MONTH(soh.OrderDate)) DESC
 
 --b) (16 bodova) Prikazati 5 narudzbi sa najvise narucenih razlicitih proizvoda i 5 narudzbi sa najvise porizvoda koji pripadaju razlicitim potkategorijama.
 	--Upitom prikazati ime i prezime kupca,id narudzbe te ukupnu vrijednost narudzbe sa popoustom zaokruzenu na 2 decimale (AdventureWorks)
