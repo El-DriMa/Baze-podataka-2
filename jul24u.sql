@@ -214,8 +214,21 @@ ORDER BY COUNT(soh.SalesOrderID) DESC
 
 
 						
---g) (10 bodova) Menadzmentu kompanije potrebne su informacije o najmanje prodavanim porizvodima. ...kako bi ih eliminisali iz ponude.
-	--Obavezno prikazati naziv o kojem se proizvodu radi i kvartal i godinu i adekvatnu poruku. (AdventureWorks)
+--g) (10 bodova) Menadžmentu kompanije potrebne su informacije o najmanje prodavanim proizvodima (1 proizvod) po kvartalima i godinama 
+--kako bi ih eliminisali iz ponude. Obavezno prikazati o kojem nazivu proizvoda se radi, te kvartal i godinu i adekvatnu opsinu poruku
+
+SELECT YEAR(soh.OrderDate) AS 'Godina',DATEPART(QUARTER,soh.OrderDate) AS 'Kvartal',
+			(SELECT TOP 1 p2.Name
+			FROM Sales.SalesOrderDetail AS sod2
+			JOIN Production.Product AS p2 ON sod2.ProductID=p2.ProductID
+			JOIN Sales.SalesOrderHeader AS soh2 ON sod2.SalesOrderID=soh2.SalesOrderID
+			WHERE YEAR(soh2.OrderDate)=YEAR(soh.OrderDate)
+			GROUP BY p2.Name
+			ORDER BY SUM(sod2.OrderQty) ASC
+			) AS 'Proizvod','Izbaciti' AS 'Opis'
+FROM Sales.SalesOrderHeader AS soh
+GROUP BY YEAR(soh.OrderDate),DATEPART(QUARTER,soh.OrderDate)
+ORDER BY 1,2 
 
 --5.
 --a) (11 bodova) Prikazati kupce koji su kreirali narudzbe u minimalno 5 razlicitih mjeseci u 2012 godini.
