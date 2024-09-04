@@ -200,16 +200,17 @@ GROUP BY so.SpecialOfferID
 --f) (9 bodova) Prikazatu 5 kupaca koji su napravili najveci broj narudzbi u zadnjih 30% narudzbi iz 2011 ili 2012 god. (AdventureWorks)
 
 
-SELECT TOP 5 soh.CustomerID,COUNT(soh.SalesOrderID) AS 'Broj narudzbi'
-FROM Sales.SalesOrderHeader AS soh 
-WHERE YEAR(soh.OrderDate) IN (2011,2012)
-AND soh.SalesOrderID IN ( 
-	SELECT TOP 30 PERCENT soh2.SalesOrderID
-	FROM Sales.SalesOrderHeader AS soh2
-	WHERE YEAR(soh2.OrderDate) IN (2011,2012)
-	ORDER BY soh2.OrderDate DESC)
-GROUP BY soh.CustomerID
-ORDER BY [Broj narudzbi] DESC
+SELECT TOP 5 c.CustomerID,pe.FirstName,pe.LastName,COUNT(soh.SalesOrderID) AS 'Broj narudzbi'
+FROM Sales.SalesOrderHeader AS soh
+JOIN Sales.Customer AS c ON soh.CustomerID=c.CustomerID
+JOIN Person.Person AS pe ON c.PersonID=pe.BusinessEntityID
+WHERE YEAR(soh.OrderDate) IN (2011,2012) AND soh.SalesOrderID IN 
+																  (SELECT TOP 30 PERCENT soh2.SalesOrderID
+																  FROM Sales.SalesOrderHeader AS soh2
+																  WHERE YEAR(soh2.OrderDate) IN (2011,2012)
+																  ORDER BY soh2.OrderDate DESC)
+GROUP BY c.CustomerID,pe.FirstName,pe.LastName
+ORDER BY COUNT(soh.SalesOrderID) DESC
 
 
 						
