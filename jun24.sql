@@ -175,24 +175,17 @@ ORDER BY pc.Name,p.Name
 
 --a) Pronaci najprodavanije proizvode koji nisu na listi top 10 najrpodavanijih proizvoda u zadnjih 11 godina
 
-WITH Top10 AS 
-(
- SELECT TOP 10 p.ProductID,SUM(sod.OrderQty) AS 'Ukupna kolicina'
- FROM Sales.SalesOrderDetail AS sod 
- JOIN Production.Product AS p ON sod.ProductID=p.ProductID
- JOIN Sales.SalesOrderHeader AS soh ON sod.SalesOrderID=soh.SalesOrderID
- WHERE soh.OrderDate>=DATEADD(YEAR,-11,GETDATE())
- GROUP BY p.ProductID
- ORDER BY 2 DESC
-)
-SELECT TOP 10 p.ProductID,p.Name,SUM(sod.OrderQty) AS 'Ukupna kolicina'
- FROM Sales.SalesOrderDetail AS sod 
- JOIN Production.Product AS p ON sod.ProductID=p.ProductID
- JOIN Sales.SalesOrderHeader AS soh ON sod.SalesOrderID=soh.SalesOrderID
- WHERE soh.OrderDate>=DATEADD(YEAR,-11,GETDATE())
- GROUP BY p.ProductID,p.Name
- HAVING p.ProductID NOT IN (SELECT ProductID FROM Top10)
- ORDER BY 2 DESC
+
+SELECT p.Name
+FROM Production.Product AS p
+WHERE p.ProductID NOT IN (SELECT TOP 10 p2.ProductID
+						  FROM Production.Product AS p2
+						  JOIN Sales.SalesOrderDetail AS sod ON p2.ProductID=sod.ProductID
+						  JOIN Sales.SalesOrderHeader AS soh ON soh.SalesOrderID=sod.SalesOrderID
+						  WHERE soh.OrderDate>=DATEADD(YEAR,-11,GETDATE())
+						  GROUP BY p2.ProductID
+						  ORDER BY SUM(sod.OrderQty) DESC)
+
 
  --b) Prikazati ime i prezime kupca,id narudzbe te ukupnu vrijednost narudzbe sa popustom (na 2 dec), uz uslov
  --da su na nivou pojedine narudzbe naruceni proizvodi iz svih kategorija
