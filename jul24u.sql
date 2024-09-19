@@ -133,6 +133,9 @@ FROM Northwind.dbo.[Order Details] AS od
 CREATE INDEX ix_Pretraga 
 ON Proizvodi(NazivProizvoda)
 
+SELECT NazivProizvoda
+FROM Proizvodi
+
 --b) (4 boda) Kreirati proceduru sp_update_proizvodi kojom ce se izmjeniti podaci o prpoizvodima u tabeli.
      --Korisnici mogu poslati jedan ili vise parametara te voditi raucna da ne dodje do gubitka podataka.(Nova baza)
 
