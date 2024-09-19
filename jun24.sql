@@ -42,16 +42,6 @@ Popoust REAL NOT NULL
 CONSTRAINT PK_StavkeNarudzbe PRIMARY KEY(NarudzbaID,ProizvodID)
 )
 
-
-ALTER TABLE StavkeNarudzbe
-ADD CijenaBezPopusta AS Cijena*Kolicina PERSISTED --calc
-
-SELECT * FROM StavkeNarudzbe
-WHERE NarudzbaID=11071
-
-INSERT INTO StavkeNarudzbe
-VALUES (11071,23,4,2,0)
-
 	
 --3.
 SET IDENTITY_INSERT Uposlenici ON
@@ -87,12 +77,13 @@ FROM Northwind.dbo.[Order Details] AS od
 -- i vrijednostNarudzbeBezPoputsa. Izracunate kolone vec cuvaju podatke na psnpvu podataka iz kolona!
 
 ALTER TABLE StavkeNarudzbe
-ADD VrijednostNarudzbeSaPopustom DECIMAL(10,2),
-	VrijednostNarudzbeBezPopusta DECIMAL(10,2)
+ADD CijenaBezPopusta AS Cijena*Kolicina PERSISTED --calc
 
-UPDATE StavkeNarudzbe
-SET VrijednostNarudzbeSaPopustom=(Cijena*Kolicina)*(1-Popoust),
-VrijednostNarudzbeBezPopusta=Cijena*Kolicina
+SELECT * FROM StavkeNarudzbe
+WHERE NarudzbaID=11071
+
+INSERT INTO StavkeNarudzbe
+VALUES (11071,23,4,2,0)
 
 --b) Kreirati pogled v_select_orders kojim ce se prikazati ukupna zarada po uposlenicima od narudzbi kreiranih
 --u zadnjem kvartalu 1996.god. Pogledom je potrebno prikazati spojeno ime i prezime uposlenika, ukupna zadara sa popustom na 2 dec,
