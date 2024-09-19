@@ -42,6 +42,17 @@ Popoust REAL NOT NULL
 CONSTRAINT PK_StavkeNarudzbe PRIMARY KEY(NarudzbaID,ProizvodID)
 )
 
+
+ALTER TABLE StavkeNarudzbe
+ADD CijenaBezPopusta AS Cijena*Kolicina PERSISTED --calc
+
+SELECT * FROM StavkeNarudzbe
+WHERE NarudzbaID=11071
+
+INSERT INTO StavkeNarudzbe
+VALUES (11071,23,4,2,0)
+
+	
 --3.
 SET IDENTITY_INSERT Uposlenici ON
 INSERT INTO Uposlenici(UposlenikID,Ime,Prezime,DatumRodjenja,UkupanBrojTeritorija)
